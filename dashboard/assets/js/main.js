@@ -33,22 +33,22 @@ function AddArticle() {
     }
 }
 
-function EditArticles() {
-    var modal = document.getElementById("edit-articles");
-    var btn = document.getElementById("edit-article");
-    var span = document.getElementsByClassName("close")[1];
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-}
+// function editArticles() {
+//     // var modal = document.getElementById("edit-articles");
+//     // var btn = document.getElementById("edit-article");
+//     // var span = document.getElementsByClassName("close")[1];
+//     // btn.onclick = function() {
+//     //     modal.style.display = "block";
+//     // }
+//     // span.onclick = function() {
+//     //     modal.style.display = "none";
+//     // }
+//     // window.onclick = function(event) {
+//     //     if (event.target == modal) {
+//     //         modal.style.display = "none";
+//     //     }
+//     // }
+// }
 
 function makeBold() {
     document.execCommand("bold");

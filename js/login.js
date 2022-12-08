@@ -13,6 +13,7 @@ function loginValidation() {
             document.querySelector(".password-error").style.display = "flex";
         } else {
             password.style.border = "2px solid green";
+            password.style.backgroundColor="rgb(69, 75, 27)";
             document.querySelector(".password-error").style.display = "none";
         }
     } else if (!password.value.match(passPattern)) {
@@ -114,6 +115,10 @@ function contactValidation() {
             document.querySelector(".email-error").style.display = "none";
         }
     }
+    if(msg==""){
+        document.querySelector(".msg-error").style.display="block";
+        document.querySelector("#message").style.border="2px solid red";
+    }
 
 }
 
@@ -122,6 +127,7 @@ function contactSubValidation() {
     let email = document.getElementById("email");
     let phone = document.getElementById("phone");
     let msg = document.getElementById("message").value;
+    let ms=document.getElementById("message");
     let namesPattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     let phonePattern = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
@@ -138,7 +144,6 @@ function contactSubValidation() {
         return false;
     }
     if (msg == "") {
-        alert("Message can't be empty");
         contactValidation();
         return false;
     }
@@ -193,13 +198,17 @@ function validateSubArticle() {
     } else {
         let article = {};
         let blogs = checkBlogs();
-        let blogsLength = blogs.length;
         checkBlogs().length;
-        article["articleId"] = blogsLength;
+        let date = new Date();
+        let currentDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+        article["articleId"] = blogs.length;
         article["title"] = title.value;
-        article["cover-pic"] = picture.value;
+        article["coverPic"] = picture.files[0].name;
         article["description"] = editor;
-        storeArticle(article)
+        article["date"] = currentDate;
+        article["likes"] = 0;
+        article["comments"] = [];
+        storeArticle(article);
 
         return true;
     }
